@@ -5,3 +5,27 @@ using PyPlot; using JLD; using Statistics
 elcapitan = imread("el-capitan.png")
 imshow(convert(Array{Float32, 3}, elcapitan))
 size(elcapitan)
+output -> (360, 640, 4)
+
+"""
+extract() -- load and show image and extract red, blue, and green channels into 3 separate variables
+This function takes the name of an image as a string input and loads and shows the image. The
+function extracts the red, blue, and green channels into 3 separate variables and
+returns the values of the 3 variables.
+
+Args:
+   imagename (string): name of the image
+
+Returns:
+   red (matrix floats): the red channel
+   blue (matrix of floats): the blue channel
+   green (matrix of floats): the green channel
+"""
+function extract(imagename)
+    imagename = imread("imagename")
+    imshow(convert(Array{Float32, 3}, imagename))
+    red = imagename[:,:,1]
+    blue = imagename[:,:,2]
+    green = imagename[:,:,2]
+    return red; blue; green
+end

@@ -109,3 +109,4 @@ function rotation(name, shiftrows)
     newimage = circshift(red, (shiftrows,0))
     return imshow(newimage)
 end
+rotation("el-capitan.png", -180)

@@ -1,5 +1,5 @@
-### initializing the packages Pyplot, JLD, and Statistics
-using PyPlot; using JLD; using Statistics
+### initializing the packages Pyplot and JLD
+using PyPlot; using JLD
 
 A.
 ### loading the image into Julia, displaying it in a figure, and computing its size
@@ -102,10 +102,10 @@ Args:
 Returns:
    shiftedimage (matrix of floats): shifted image
 """
-# function rotation(name, shiftrows)
-    # name = imread(name)
-    # imshow(convert(Array{Float32, 3}, name))
-    # red = name[:,:,1]
-    # newimage = circshift(red, (shiftrows,0))
-    # return imshow(newimage)
+function rotation(name, shiftrows)
+    name = imread(name)
+    imshow(convert(Array{Float32, 3}, name))
+    red = name[:,:,1]
+    newimage = circshift(red, (shiftrows,0))
+    return imshow(newimage)
 end

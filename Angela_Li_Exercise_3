@@ -76,3 +76,6 @@ image2 = zeros(360,640,3)
 image2[:,:,1] = elcapitan[:,:,2]
 image2[:,:,2] = elcapitan[:,:,3]
 image2[:,:,3] = elcapitan[:,:,1]
+
+### plotting the two images side by side
+subplot(1,2,1); imshow(elcapitan); subplot(1,2,2); imshow(image2)

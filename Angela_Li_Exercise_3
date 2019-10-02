@@ -69,6 +69,8 @@ Reset with git reset -- mixed
 902 0.145098 … 0.0156863 0.00784314; 0.113725 0.12549 … 0.0196078 0.0313726], Float32[0.380392 0.380392 … 0.690196 0.682353; 0.388235 0
 .388235 … 0.698039 0.690196; … ; 0.109804 0.105882 … 0.0235294 0.0156863; 0.0705882 0.0823529 … 0.027451 0.0392157])
 
+### The value of reset is being able to go back to your original code before the bug.
+
 ### making a new 360x640x3 matrix of zeroes
 image2 = zeros(360,640,3)
 360×640×3 Array{Float64,3}:
@@ -90,12 +92,12 @@ B.
 """
 rotation() -- loads an image and shift the rows of pixels by a certain number (indicated by shiftrows)
 This function takes the name of an image as a string input and loads it. The function then
-moves rows of pixels up some number of pixels (shiftrows) such that the top
+moves the red channel up some number of pixels (shiftrows) such that the top
 rows now become the bottom rows.
 
 Args:
    name (string): name of the image
-   shift (int): number of pixels to shift the image by
+   shiftrows (int): number of pixels to shift the image by
 
 Returns:
    shiftedimage (matrix of floats): shifted image
@@ -103,3 +105,7 @@ Returns:
 function rotation(name, shiftrows)
     name = imread(name)
     imshow(convert(Array{Float32, 3}, name))
+    red = name[:,:,1]
+    newimage = circshift(red, (shiftrows,0))
+    return imshow(newimage)
+end

@@ -1,0 +1,7 @@
+### initializing the packages Pyplot, JLD, and Statistics
+using PyPlot; using JLD; using Statistics
+
+### loading the image into Julia, displaying it in a figure, and computing its size
+elcapitan = imread("el-capitan.png")
+imshow(convert(Array{Float32, 3}, elcapitan))
+size(elcapitan)

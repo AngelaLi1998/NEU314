@@ -1,6 +1,7 @@
 ### initializing the packages Pyplot, JLD, and Statistics
 using PyPlot; using JLD; using Statistics
 
+A.
 ### loading the image into Julia, displaying it in a figure, and computing its size
 elcapitan = imread("el-capitan.png")
 imshow(convert(Array{Float32, 3}, elcapitan))
@@ -83,3 +84,22 @@ figure(figsize=[5,5])
 subplot(1,2,1); imshow(elcapitan); title("Original"); axis("off")
 subplot(1,2,2); imshow(image2); title("Purple"); axis("off")
 ### see 2 elcapitans.png and titled.png
+
+
+B.
+"""
+rotation() -- loads an image and shift the rows of pixels by a certain number (indicated by shiftrows)
+This function takes the name of an image as a string input and loads it. The function then
+moves rows of pixels up some number of pixels (shiftrows) such that the top
+rows now become the bottom rows.
+
+Args:
+   name (string): name of the image
+   shift (int): number of pixels to shift the image by
+
+Returns:
+   shiftedimage (matrix of floats): shifted image
+"""
+function rotation(name, shiftrows)
+    name = imread(name)
+    imshow(convert(Array{Float32, 3}, name))

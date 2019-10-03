@@ -121,6 +121,9 @@ function rotation(name, shiftrows)
 end
 ### running the function
 rotation("el-capitan.png", 180)
+### displaying the original and the shifted figure side by side
+subplot(1,2,1); imshow(elcapitan); title("Original"); axis("off")
+subplot(1,2,2); rotation("el-capitan.png", 180); title("Shifted"); axis("off")
 ### see shifted elcapitan.png in GitHub
 
 ### same function but without using circshift or for loop

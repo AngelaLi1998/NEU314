@@ -5,13 +5,14 @@ A.
 ### 1Aa. loading the image into Julia, displaying it in a figure, and computing its size
 elcapitan = imread("el-capitan.png")
 imshow(convert(Array{Float32, 3}, elcapitan))
-### see elcapitan.png in GitHub
 size(elcapitan)
+### output
 (360, 640, 4)
+### see elcapitan.png in GitHub
 
 ### 1Ab.
 """
-extract() -- load and show image and extract red, blue, and green channels into 3 separate variables
+extract() -- load and show image and return red, blue, and green channels as 3 separate variables
 This function takes the name of an image as a string input and loads and shows the image. The
 function extracts the red, blue, and green channels into 3 separate variables and
 returns the values of the 3 variables.
@@ -32,13 +33,15 @@ function extract(imagename)
     blue = imagename[:,:,3]
     return red, green, blue
 end
+### running the function
 extract("el-capitan.png")
+### output
 (Float32[0.796078 0.796078 … 0.533333 0.52549; 0.803922 0.803922 … 0.541176 0.533333; … ; 0.0980392 0.0100000 … 0.0156863 0.00784314; 0
 .0509804 0.0627451 … 0.0196078 0.0313726], Float32[0.54902 0.54902 … 0.568627 0.560784; 0.552941 0.556863 … 0.576471 0.568627; … ; 0.14
 902 0.145098 … 0.0156863 0.00784314; 0.113725 0.12549 … 0.0196078 0.0313726], Float32[0.380392 0.380392 … 0.690196 0.682353; 0.388235 0
 .388235 … 0.698039 0.690196; … ; 0.109804 0.105882 … 0.0235294 0.0156863; 0.0705882 0.0823529 … 0.027451 0.0392157])
 
-### 1Ac.
+### 1Ac. the same function as 1Ab but also prints BUG BUG BUG
 function extract(imagename)
     imagename = imread(imagename)
     imshow(convert(Array{Float32, 3}, imagename))
@@ -48,14 +51,16 @@ function extract(imagename)
     println("BUG BUG BUG")
     return red, green, blue
 end
+### running the function
 extract("el-capitan.png")
+### output
 BUG BUG BUG
 (Float32[0.796078 0.796078 … 0.533333 0.52549; 0.803922 0.803922 … 0.541176 0.533333; … ; 0.0980392 0.0901961 … 0.0156863 0.00784314; 0
 .0509804 0.0100000 … 0.0196078 0.0313726], Float32[0.54902 0.54902 … 0.568627 0.560784; 0.552941 0.556863 … 0.576471 0.568627; … ; 0.14
 902 0.145098 … 0.0156863 0.00784314; 0.113725 0.12549 … 0.0196078 0.0313726], Float32[0.380392 0.380392 … 0.690196 0.682353; 0.388235 0
 .388235 … 0.698039 0.690196; … ; 0.109804 0.105882 … 0.0235294 0.0156863; 0.0705882 0.0823529 … 0.027451 0.0392157])
 
-### 1Ad.
+### 1Ad. same function as in 1Ab but after git reset
 function extract(imagename)
     imagename = imread(imagename)
     imshow(convert(Array{Float32, 3}, imagename))
@@ -65,7 +70,9 @@ function extract(imagename)
     println("Reset with git reset -- mixed")
     return red, green, blue
 end
+### running the function
 extract("el-capitan.png")
+### output
 Reset with git reset -- mixed
 (Float32[0.796078 0.796078 … 0.533333 0.52549; 0.803922 0.803922 … 0.541176 0.533333; … ; 0.0980392 0.0901961 … 0.0156863 0.00784314; 0
 .0509804 0.0627451 … 0.0196078 0.0313726], Float32[0.54902 0.54902 … 0.568627 0.560784; 0.552941 0.556863 … 0.576471 0.568627; … ; 0.14
@@ -84,7 +91,7 @@ image2[:,:,2] = elcapitan[:,:,3]
 image2[:,:,3] = elcapitan[:,:,1]
 
 ### plotting the two images side by side
-### sizing, naming, and turning off the axis of the image
+### sizing, naming, and turning off the axis of the images
 figure(figsize=[5,5])
 subplot(1,2,1); imshow(elcapitan); title("Original"); axis("off")
 subplot(1,2,2); imshow(image2); title("Purple"); axis("off")
@@ -93,17 +100,17 @@ subplot(1,2,2); imshow(image2); title("Purple"); axis("off")
 
 B.
 """
-rotation() -- loads an image and shift the rows of pixels by a certain number (indicated by shiftrows)
+rotation() -- load image and shift the rows of pixels circularly by a certain number (indicated by shiftrows)
 This function takes the name of an image as a string input and loads it. The function then
-moves the red channel up some number of pixels (shiftrows) such that the top
-rows now become the bottom rows.
+moves a certain number of rows (indicated by shiftrows) up such that the top rows now become
+the bottom rows and the bottom rows become the top rows.
 
 Args:
    name (string): name of the image
-   shiftrows (int): number of pixels to shift the image by
+   shiftrows (int): number of rows to shift the image by
 
 Returns:
-   shiftedimage (matrix of floats): shifted image
+   shiftedimage (image): shifted image
 """
 function rotation(name, shiftrows)
     name = imread(name)
@@ -112,10 +119,12 @@ function rotation(name, shiftrows)
     newimage = circshift(red, (-shiftrows,0))
     return imshow(newimage)
 end
+### running the function
 rotation("el-capitan.png", 180)
+### see shifted elcapitan.png in GitHub
 
-### without using circshift or for loop
-function rotations(name, shiftrows)
+### same function but without using circshift or for loop
+function rotating(name, shiftrows)
     name = imread(name)
     imshow(convert(Array{Float32, 3}, name))
     red = name[:,:,1]
@@ -125,7 +134,7 @@ function rotations(name, shiftrows)
         return imshow(newimg)
 end
 
-### without using circshift but using a for loop
+### same function without using circshift but using a for loop
 function shift(name, shiftrows)
     name = imread(name)
     imshow(convert(Array{Float32, 3}, name))

@@ -123,7 +123,7 @@ end
 rotation("el-capitan.png", 180)
 ### see shifted elcapitan.png in GitHub
 ### displaying the original and the shifted figure side by side
-subplot(1,2,1); imshow(elcapitan); title("Original"); axis("off")
+subplot(1,2,1); imshow(elcapitan[:,:,1]); title("Original"); axis("off")
 subplot(1,2,2); rotation("el-capitan.png", 180); title("Shifted"); axis("off")
 ### see shifted elcapitan and original.png in GitHub
 
